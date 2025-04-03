@@ -15,16 +15,16 @@ const App: React.FC = () => {
   return (
     <CssVarsProvider>
       <Sheet sx={{ backgroundColor: 'background.surface', color: 'text.primary' }}>
-        <BrowserRouter>
+        <BrowserRouter basename='/Snapshot'>
           <ErrorBoundary>
             <Routes>
               <Route element={<Layout />}>
-                <Route path="/pages/Home" element={<Home />} />
-                <Route path="/pages/Snapshot" element={<Snapshot />} />
-                <Route path="/pages/SnapshotLive" element={<SnapshotLive />} />
-                <Route path="/pages/Debt" element={<Debt />} />
-                <Route path="/pages/Ladder" element={<Ladder />} />
-                <Route path="/pages/Login" element={<Login />} />
+                <Route path="./pages/Home" element={<Home />} />
+                <Route path="./pages/Snapshot" element={<Snapshot />} />
+                <Route path="./pages/SnapshotLive" element={<SnapshotLive />} />
+                <Route path="./pages/Debt" element={<Debt />} />
+                <Route path="./pages/Ladder" element={<Ladder />} />
+                <Route path="./pages/Login" element={<Login />} />
               </Route>
             </Routes>
           </ErrorBoundary>
