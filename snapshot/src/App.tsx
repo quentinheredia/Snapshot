@@ -9,10 +9,13 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Snapshot" element={<Snapshot />} />
-        <Route path="/Tax" element={<Tax />} />
-        <Route path="/Login" element={<Login />} />
+        <Route element={<Navbar />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/Home" element={<Home />} />
+          <Route path="/Snapshot" element={<Snapshot />} />
+          <Route path="/Tax" element={<Tax />} />
+          <Route path="/Login" element={<Login />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
