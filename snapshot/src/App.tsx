@@ -1,15 +1,15 @@
 import { BrowserRouter, Routes, Route } from "react-router";
-import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Snapshot from "./pages/Snapshot";
 import Tax from "./pages/Tax";
 import Login from "./pages/Login";
+import Layout from "./components/Layout";
 
 const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Navbar />}>
+        <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/Home" element={<Home />} />
           <Route path="/Snapshot" element={<Snapshot />} />
