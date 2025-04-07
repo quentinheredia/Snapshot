@@ -1,0 +1,6 @@
+• UC1 (Part-time, hourly): Provide an hourly rate and weekly hours, and the model calculates daily (using a 5-day workweek), weekly, biweekly, monthly, and yearly earnings.
+• UC2 (Contract worker): If you supply a weekly income and weekly hours, the model computes the hourly rate and other breakdowns.
+• UC3 (White collar, salaried): When a yearly income and weekly hours are provided, the hourly rate and subsequent breakdowns are derived.
+• UC4 (Hourly only): If only the hourly rate is provided, the model assumes a default 37.5-hour work week.
+• UC5 (Raise simulation): The adjust_for_raise method shows how much more a person would earn if their hourly rate increased by a specified amount.
+• UC6 (Interactive adjustment): With setter methods, users can dynamically update their inputs (both hours and pay rate) to see real-time recalculations.
