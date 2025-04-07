@@ -5,8 +5,9 @@
     "\\src",
     "\\src\\assets",
     "\\src\\components",
-    "\\src\\pages"
+    "\\src\\pages",
+    "\\src\\Types"
   ],
-  "SelectedNode": "\\src\\App.tsx",
+  "SelectedNode": "\\src\\pages\\Snapshot.tsx",
   "PreviewInSolutionExplorer": false
 }
