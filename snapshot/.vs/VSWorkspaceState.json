@@ -4,8 +4,9 @@
     "\\public",
     "\\src",
     "\\src\\assets",
-    "\\src\\components"
+    "\\src\\components",
+    "\\src\\pages"
   ],
-  "SelectedNode": "\\src\\main.tsx",
+  "SelectedNode": "\\src\\App.tsx",
   "PreviewInSolutionExplorer": false
 }

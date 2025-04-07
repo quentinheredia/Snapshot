@@ -1,92 +1,74 @@
-//Navigation Bar
+import React, { useState, useEffect } from "react";
+import { Navbar as RBNavbar, Nav, Container } from "react-bootstrap";
+import NavButton from "./navButton";
 
-function Navbar() {
-  return (
-    <div className="container">
-      <nav
-        className="navbar bg-dark border-bottom border-body bg-body-tertiary"
-        data-bs-theme="dark"
-      >
-        <div className="container-fluid">
-          <a className="navbar-brand" href="#">
-            Navbar
-          </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Link
-                </a>
-              </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Dropdown
-                </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Action
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider"></hr>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Something else here
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link disabled" aria-disabled="true">
-                  Disabled
-                </a>
-              </li>
-            </ul>
-            <form className="d-flex" role="search">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              ></input>
-              <button className="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form>
-          </div>
-        </div>
-      </nav>
-    </div>
+const Navbar: React.FC = () => {
+  const [prevScrollPos, setPrevScrollPos] = useState<number>(
+    window.pageYOffset
   );
-}
+  const [visible, setVisible] = useState<boolean>(true);
+
+  const handleScroll = () => {
+    const currentScrollPos = window.pageYOffset;
+    // Show navbar if scrolling up or near the top; hide if scrolling down.
+    const isVisible = prevScrollPos > currentScrollPos || currentScrollPos < 10;
+    setVisible(isVisible);
+    setPrevScrollPos(currentScrollPos);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [prevScrollPos]);
+
+  return (
+    <RBNavbar
+      expand="lg"
+      style={{
+        position: "fixed",
+        top: visible ? "0" : "-80px", // Adjust "-80px" if your navbar height changes.
+        transition: "top 0.3s",
+        backgroundColor: "#ffffff",
+        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+        borderBottom: "1px solid #e0e0e0",
+        width: "100%",
+        zIndex: 1000,
+      }}
+    >
+      <Container fluid>
+        <RBNavbar.Brand
+          href="/Home"
+          style={{
+            fontWeight: 700,
+            fontSize: "1.5rem",
+            color: "#333333",
+            marginLeft: "1rem",
+          }}
+        >
+          FINSNAP
+        </RBNavbar.Brand>
+        <RBNavbar.Toggle aria-controls="basic-navbar-nav" />
+        <RBNavbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto" style={{ alignItems: "center" }}>
+            <Nav.Link href="/Home" style={{ padding: "0 0.5rem" }}>
+              <NavButton>Home</NavButton>
+            </Nav.Link>
+            <Nav.Link href="/Snapshot" style={{ padding: "0 0.5rem" }}>
+              <NavButton>Snapshot</NavButton>
+            </Nav.Link>
+            <Nav.Link href="/Tax" style={{ padding: "0 0.5rem" }}>
+              <NavButton>Tax Calculator</NavButton>
+            </Nav.Link>
+          </Nav>
+          <Nav>
+            <Nav.Link href="/Login" style={{ marginRight: "1rem" }}>
+              <NavButton>Login</NavButton>
+            </Nav.Link>
+          </Nav>
+        </RBNavbar.Collapse>
+      </Container>
+    </RBNavbar>
+  );
+};
 
 export default Navbar;
