@@ -1,55 +1,73 @@
-import Button from "react-bootstrap/Button";
+import React, { useState, useEffect } from "react";
+import { Navbar as RBNavbar, Nav, Container } from "react-bootstrap";
+import NavButton from "./navButton";
 
 const Navbar: React.FC = () => {
+  const [prevScrollPos, setPrevScrollPos] = useState<number>(
+    window.pageYOffset
+  );
+  const [visible, setVisible] = useState<boolean>(true);
+
+  const handleScroll = () => {
+    const currentScrollPos = window.pageYOffset;
+    // Show navbar if scrolling up or near the top; hide if scrolling down.
+    const isVisible = prevScrollPos > currentScrollPos || currentScrollPos < 10;
+    setVisible(isVisible);
+    setPrevScrollPos(currentScrollPos);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [prevScrollPos]);
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container-fluid">
-        {/* [LOGO] with left margin */}
-        <a className="navbar-brand ms-3" href="/Home">
-          [LOGO]
-        </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarDivs"
-          aria-controls="navbarDivs"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+    <RBNavbar
+      expand="lg"
+      style={{
+        position: "fixed",
+        top: visible ? "0" : "-80px", // Adjust "-80px" if your navbar height changes.
+        transition: "top 0.3s",
+        backgroundColor: "#ffffff",
+        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+        borderBottom: "1px solid #e0e0e0",
+        width: "100%",
+        zIndex: 1000,
+      }}
+    >
+      <Container fluid>
+        <RBNavbar.Brand
+          href="/Home"
+          style={{
+            fontWeight: 700,
+            fontSize: "1.5rem",
+            color: "#333333",
+            marginLeft: "1rem",
+          }}
         >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarDivs">
-          <div className="d-flex justify-content-between align-items-center w-100">
-            <div className="d-flex">
-              <div className="p-2">
-                <a className="nav-link" href="./Home">
-                  <Button>Home</Button>
-                </a>
-              </div>
-              <div className="p-2">
-                <a className="nav-link" href="./Snapshot">
-                  <Button>Snapshot</Button>
-                </a>
-              </div>
-              <div className="p-2">
-                <a className="nav-link" href="./Tax">
-                  <Button>Tax Calculator</Button>
-                </a>
-              </div>
-            </div>
-            <div className="d-flex">
-              {/* Login with right margin */}
-              <div className="p-2 me-3">
-                <a className="nav-link" href="/Login">
-                  <Button>Login</Button>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
+          FINSNAP
+        </RBNavbar.Brand>
+        <RBNavbar.Toggle aria-controls="basic-navbar-nav" />
+        <RBNavbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto" style={{ alignItems: "center" }}>
+            <Nav.Link href="/Home" style={{ padding: "0 0.5rem" }}>
+              <NavButton>Home</NavButton>
+            </Nav.Link>
+            <Nav.Link href="/Snapshot" style={{ padding: "0 0.5rem" }}>
+              <NavButton>Snapshot</NavButton>
+            </Nav.Link>
+            <Nav.Link href="/Tax" style={{ padding: "0 0.5rem" }}>
+              <NavButton>Tax Calculator</NavButton>
+            </Nav.Link>
+          </Nav>
+          <Nav>
+            <Nav.Link href="/Login" style={{ marginRight: "1rem" }}>
+              <NavButton>Login</NavButton>
+            </Nav.Link>
+          </Nav>
+        </RBNavbar.Collapse>
+      </Container>
+    </RBNavbar>
   );
 };
 

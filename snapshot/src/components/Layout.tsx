@@ -1,13 +1,16 @@
+import React from "react";
 import { Outlet } from "react-router";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const Layout: React.FC = () => {
   return (
     <>
       <Navbar />
-      <div style={{ padding: "1rem" }}>
+      <main style={{ paddingTop: "80px", minHeight: "80vh" }}>
         <Outlet />
-      </div>
+      </main>
+      <Footer />
     </>
   );
 };
