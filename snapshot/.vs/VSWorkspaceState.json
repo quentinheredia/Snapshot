@@ -4,8 +4,10 @@
     "\\public",
     "\\src",
     "\\src\\assets",
-    "\\src\\components"
+    "\\src\\components",
+    "\\src\\pages",
+    "\\src\\Types"
   ],
-  "SelectedNode": "\\src\\main.tsx",
+  "SelectedNode": "\\src\\pages\\Snapshot.tsx",
   "PreviewInSolutionExplorer": false
 }
