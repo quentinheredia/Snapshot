@@ -84,6 +84,10 @@ const Home: React.FC = () => {
       <Container fluid className="py-5 bg-light">
         <Row className="align-items-center">
           <Col md={6} className="d-flex flex-column justify-content-center">
+          <Col
+            md={{ span: 5, offset: 1 }}
+            className="d-flex flex-column justify-content-center"
+          >
             <Button
               variant="outline-success"
               size="lg"
@@ -98,6 +102,7 @@ const Home: React.FC = () => {
             </p>
           </Col>
           <Col md={6}>
+          <Col md={5}>
             <Card className="border-0 shadow-sm">
               <Card.Body
                 className="d-flex justify-content-center align-items-center"

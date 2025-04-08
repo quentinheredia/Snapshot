@@ -64,6 +64,9 @@ const Navbar: React.FC = () => {
             <Nav.Link href="/Login" style={{ marginRight: "1rem" }}>
               <NavButton>Login</NavButton>
             </Nav.Link>
+            <Nav.Link href="/Sign-up" style={{ marginRight: "1rem" }}>
+              <NavButton>Sign up</NavButton>
+            </Nav.Link>
           </Nav>
         </RBNavbar.Collapse>
       </Container>
